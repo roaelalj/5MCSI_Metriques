@@ -32,20 +32,6 @@ def mongraphique():
 @app.route('/histogramme/')
 def monhistogramme():
     return render_template("histogramme.html")
-  
- @app.route('/extract-minutes/<date_string>')
-def extract_minutes(date_string):
-    try:
-        date_object = datetime.strptime(date_string, '%Y-%m-%dT%H:%M:%SZ')
-        minutes = date_object.strftime('%Y-%m-%d %H:%M')  # Format minute
-        return jsonify({'minutes': minutes})
-    except ValueError:
-        return jsonify({'error': 'Invalid date format. Use the following format: YYYY-MM-DDTHH:MM:SSZ'}), 400
-
  
-@app.route('/commits/')
-def commits_graph():
-    # Servir le fichier HTML pour le graphique
-    return render_template('commits.html')
 if __name__ == "__main__":
   app.run(debug=True)
